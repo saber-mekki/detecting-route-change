@@ -1,26 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useCallbackPrompt } from './components/useCallback';
 
 function App() {
+    const [showDialog, setShowDialog] = useState<boolean>(false);
+      const [showPrompt, confirmNavigation, cancelNavigation] =
+				useCallbackPrompt(showDialog);
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+		<div className="App">
+			<header className="App-header">
+				<img src={logo} className="App-logo" alt="logo" />
+				<input onChange={() => setShowDialog(true)}></input>
+			</header>
+		</div>
+	);
 }
 
 export default App;
